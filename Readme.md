@@ -24,3 +24,7 @@ Task4
 - When: 取包
 - Then: 取包成功，返回包裹
 
+Task5
+- Given: 使用无效票据  
+- When: 取包
+- Then: 取包失败，提示异常

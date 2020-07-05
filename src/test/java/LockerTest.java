@@ -44,4 +44,21 @@ public class LockerTest {
 
         assertEquals(bag, returnedBag);
     }
+
+    @Test(expected = InvalidTicketException.class)
+    public void should_throw_exception_when_retrieve_bag_using_invalid_ticket() {
+        Locker locker = new Locker(1);
+
+        locker.retrieve(new Ticket());
+    }
+
+    @Test(expected = InvalidTicketException.class)
+    public void should_throw_exception_when_retrieve_bag_twice_using_same_valid_ticket() {
+        Locker locker = new Locker(1);
+
+        Ticket ticket = locker.save(new Bag(Size.S));
+
+        locker.retrieve(ticket);
+        locker.retrieve(ticket);
+    }
 }

@@ -31,6 +31,11 @@ public class Locker {
     }
 
     public Bag retrieve(Ticket ticket) {
-        return ticketBagMap.get(ticket);
+        if (ticketBagMap.containsKey(ticket)) {
+            Bag bag = ticketBagMap.get(ticket);
+            ticketBagMap.remove(ticket);
+            return bag;
+        }
+        throw new InvalidTicketException();
     }
 }
