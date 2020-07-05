@@ -66,4 +66,16 @@ public class PrimaryLockerRobotTest {
 
         primaryLockerRobot.retrieve(new Ticket());
     }
+
+
+    @Test(expected = InvalidTicketException.class)
+    public void should_throw_exception_when_retrieve_bag_twice_given_valid_ticket() {
+        PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(new Locker(1, Size.M), new Locker(1, Size.M));
+
+        Bag bag = new Bag(Size.M);
+        Ticket ticket = primaryLockerRobot.save(bag);
+
+        primaryLockerRobot.retrieve(ticket);
+        primaryLockerRobot.retrieve(ticket);
+    }
 }
