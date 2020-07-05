@@ -48,4 +48,8 @@ public class Locker {
     public boolean isValid(Ticket ticket) {
         return ticketBagMap.containsKey(ticket);
     }
+
+    public double getAvailableCapacityRatio() {
+        return getAvailableCapacity() * 1.0 / totalCapacity;
+    }
 }

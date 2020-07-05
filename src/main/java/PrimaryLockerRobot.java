@@ -1,34 +1,22 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author lianghongbuaa@gmail.com
  * @date 2020/7/5
  */
 
-public class PrimaryLockerRobot {
-    private final List<Locker> lockers = new ArrayList<>();
-
+public class PrimaryLockerRobot extends AbstractRobot {
     public PrimaryLockerRobot(Locker... lockers) {
         this.lockers.addAll(Arrays.asList(lockers));
     }
 
-    public Ticket save(Bag bag) {
-        for (Locker locker : lockers) {
-            if (locker.isAvailable()) {
-                return locker.save(bag);
-            }
-        }
-        throw new NoCapacityException();
-    }
-
-    public Bag retrieve(Ticket ticket) {
-        for (Locker locker : lockers) {
-            if (locker.isValid(ticket)) {
-                return locker.retrieve(ticket);
-            }
-        }
-        throw new InvalidTicketException();
+    @Override
+    Optional<Locker> findBestLocker() {
+        return lockers.stream()
+                .filter(Locker::isAvailable)
+                .findFirst();
     }
 }

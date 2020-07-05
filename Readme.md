@@ -59,3 +59,12 @@ Task6
 - Given: 使用同一张 PrimaryLockerRobot 存包返回的票据 
 - When: 取包两次
 - Then: 第一次取包成功，第二次取包失败，提示异常
+
+### Super Locker Robot
+
+存取包的功能与 PrimaryLockerRobot 基本相同，管理 L 号包裹，存入空置率最大的 Locker。取包行为抽象为 Robot
+
+Task1
+- Given: SuperLockerRobt 管理两个不同的 Locker，Locker1 的空置率小于 Locker2
+- When: 存包
+- Then: 包裹被存到 Locker2
