@@ -9,13 +9,15 @@ import java.util.Map;
 public class Locker {
     private final int totalCapacity;
     private final Map<Ticket, Bag> ticketBagMap = new HashMap<>();
+    private Size acceptableSize;
 
-    public Locker(int totalCapacity) {
+    public Locker(int totalCapacity, Size acceptableSize) {
         this.totalCapacity = totalCapacity;
+        this.acceptableSize = acceptableSize;
     }
 
     public Ticket save(Bag bag) {
-        if (bag.getSize() != Size.S) {
+        if (bag.getSize() != acceptableSize) {
             throw new WrongTicketTypeException();
         }
         if (getAvailableCapacity() > 0) {
@@ -24,6 +26,10 @@ public class Locker {
             return ticket;
         }
         throw new NoCapacityException();
+    }
+
+    public boolean isAvailable() {
+        return getAvailableCapacity() > 0;
     }
 
     private int getAvailableCapacity() {
