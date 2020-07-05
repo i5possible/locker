@@ -31,7 +31,7 @@ public class LockerRobotManager implements Storeable {
                 return storeable.retrieve(ticket);
             }
         }
-        return null;
+        throw new InvalidTicketException();
     }
 
     @Override

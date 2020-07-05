@@ -64,4 +64,10 @@ public class LockerRobotManagerTest {
         Bag returnedBag = lockerRobotManager.retrieve(ticket);
         assertEquals(bag, returnedBag);
     }
+
+
+    @Test(expected = InvalidTicketException.class)
+    public void should_return_bag_when_retrieve_bag_given_invalid_ticket() {
+        lockerRobotManager.retrieve(new Ticket());
+    }
 }
