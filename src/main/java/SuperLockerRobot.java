@@ -12,7 +12,6 @@ public class SuperLockerRobot extends AbstractRobot{
         this.lockers.addAll(Arrays.asList(lockers));
     }
 
-    @Override
     Optional<Locker> findBestLocker() {
         return lockers.stream().max(Comparator.comparing(Locker::getAvailableCapacityRatio));
     }
