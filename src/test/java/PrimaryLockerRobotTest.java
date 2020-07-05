@@ -36,7 +36,6 @@ public class PrimaryLockerRobotTest {
 
     @Test
     public void should_save_to_second_locker_when_save_bag_given_first_locker_is_full_and_second_is_not() {
-
         Locker firstLocker = new Locker(1, Size.M);
         firstLocker.save(new Bag(Size.M));
         Locker secondLocker = new Locker(1, Size.M);
@@ -47,6 +46,17 @@ public class PrimaryLockerRobotTest {
         Ticket ticket = primaryLockerRobot.save(bag);
 
         Bag returnedBag = secondLocker.retrieve(ticket);
+        assertEquals(bag, returnedBag);
+    }
+
+    @Test
+    public void should_return_bag_when_retrieve_bag_given_valid_ticket() {
+        PrimaryLockerRobot primaryLockerRobot = new PrimaryLockerRobot(new Locker(1, Size.M), new Locker(1, Size.M));
+
+        Bag bag = new Bag(Size.M);
+        Ticket ticket = primaryLockerRobot.save(bag);
+
+        Bag returnedBag = primaryLockerRobot.retrieve(ticket);
         assertEquals(bag, returnedBag);
     }
 }

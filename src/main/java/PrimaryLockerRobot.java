@@ -22,4 +22,13 @@ public class PrimaryLockerRobot {
         }
         throw new NoCapacityException();
     }
+
+    public Bag retrieve(Ticket ticket) {
+        for (Locker locker : lockers) {
+            if (locker.isValid(ticket)) {
+                return locker.retrieve(ticket);
+            }
+        }
+        return null;
+    }
 }

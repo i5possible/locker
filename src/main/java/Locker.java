@@ -9,7 +9,7 @@ import java.util.Map;
 public class Locker {
     private final int totalCapacity;
     private final Map<Ticket, Bag> ticketBagMap = new HashMap<>();
-    private Size acceptableSize;
+    private final Size acceptableSize;
 
     public Locker(int totalCapacity, Size acceptableSize) {
         this.totalCapacity = totalCapacity;
@@ -37,11 +37,15 @@ public class Locker {
     }
 
     public Bag retrieve(Ticket ticket) {
-        if (ticketBagMap.containsKey(ticket)) {
+        if (isValid(ticket)) {
             Bag bag = ticketBagMap.get(ticket);
             ticketBagMap.remove(ticket);
             return bag;
         }
         throw new InvalidTicketException();
+    }
+
+    public boolean isValid(Ticket ticket) {
+        return ticketBagMap.containsKey(ticket);
     }
 }
