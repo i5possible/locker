@@ -68,3 +68,33 @@ Task1
 - Given: SuperLockerRobt 管理两个不同的 Locker，Locker1 的空置率小于 Locker2
 - When: 存包
 - Then: 包裹被存到 Locker2
+
+### LockerRobotManager
+
+LockerRobotManager 管理一个 S 号的 Locker，一个 M 号的 PrimaryLockerRobot，一个 L 号的 SuperLockerRobot，
+因此考虑对 Locker 和 Robot 的存取行为进行抽象。同时委派顺序没有要求，因此使用 List 进行存储。
+
+Task1
+- Given: LockerRobotManager 已正确配置并且管理的 Locker/Robot 都有空余容量
+- When: 存包
+- Then: 存储成功，返回票据
+
+Task2
+- Given: LockerRobotManager 已正确配置并且管理的 Locker/Robot 没有空余容量
+- When: 存包
+- Then: 存包失败，提示异常
+
+Task3
+- Given: LockerRobotManager 返回的有效票据
+- When: 取包
+- Then: 取包成功，返回包裹
+
+Task4
+- Given: 使用不是 LockerRobotManager 返回的票据
+- When: 取包
+- Then: 取包失败，提示异常
+
+Task5
+- Given: LockerRobotManager 返回的有效票据
+- When: 取包两次
+- Then: 第一次取包成功，第二次取包失败，提示异常
