@@ -3,6 +3,9 @@
  * @date 2020/7/5
  */
 
-public enum BagType {
+public enum Size {
     S,
+    M,
+    L
+    ;
 }

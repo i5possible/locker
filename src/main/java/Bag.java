@@ -4,6 +4,13 @@
  */
 
 public class Bag {
-    public Bag(BagType bagType) {
+    private final Size size;
+
+    public Bag(Size size) {
+        this.size = size;
+    }
+
+    public Size getSize() {
+        return size;
     }
 }

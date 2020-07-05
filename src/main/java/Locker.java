@@ -7,14 +7,17 @@ import java.util.Map;
  */
 
 public class Locker {
-    private int totalCapacity;
-    private Map<Bag, Ticket> bagTicketMap = new HashMap<>();
+    private final int totalCapacity;
+    private final Map<Bag, Ticket> bagTicketMap = new HashMap<>();
 
     public Locker(int totalCapacity) {
         this.totalCapacity = totalCapacity;
     }
 
     public Ticket save(Bag bag) {
+        if (bag.getSize() != Size.S) {
+            throw new WrongTicketTypeException();
+        }
         if (getAvailableCapacity() > 0) {
             Ticket ticket = new Ticket();
             bagTicketMap.put(bag, ticket);
