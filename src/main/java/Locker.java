@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class Locker {
     private final int totalCapacity;
-    private final Map<Bag, Ticket> bagTicketMap = new HashMap<>();
+    private final Map<Ticket, Bag> ticketBagMap = new HashMap<>();
 
     public Locker(int totalCapacity) {
         this.totalCapacity = totalCapacity;
@@ -20,13 +20,17 @@ public class Locker {
         }
         if (getAvailableCapacity() > 0) {
             Ticket ticket = new Ticket();
-            bagTicketMap.put(bag, ticket);
+            ticketBagMap.put(ticket, bag);
             return ticket;
         }
         throw new NoCapacityException();
     }
 
     private int getAvailableCapacity() {
-        return totalCapacity - bagTicketMap.size();
+        return totalCapacity - ticketBagMap.size();
+    }
+
+    public Bag retrieve(Ticket ticket) {
+        return ticketBagMap.get(ticket);
     }
 }
