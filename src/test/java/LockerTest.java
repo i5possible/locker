@@ -16,4 +16,12 @@ public class LockerTest {
 
         assertNotNull(ticket);
     }
+
+    @Test(expected = NoCapacityException.class)
+    public void should_throw_exception_when_save_bag_given_locker_is_full() {
+        Locker locker = new Locker(1);
+
+        locker.save(new Bag(BagType.S));
+        locker.save(new Bag(BagType.S));
+    }
 }
