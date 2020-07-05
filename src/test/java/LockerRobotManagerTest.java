@@ -49,4 +49,10 @@ public class LockerRobotManagerTest {
         Bag returnedBag = superLockerRobot.retrieve(ticket);
         assertEquals(bag, returnedBag);
     }
+
+    @Test(expected = NoCapacityException.class)
+    public void should_throw_exception_when_save_bag_given_robot_manager_has_no_available_capacity_for_specified_size_bag() {
+        locker.save(new Bag(Size.S));
+        lockerRobotManager.save(new Bag(Size.S));
+    }
 }
