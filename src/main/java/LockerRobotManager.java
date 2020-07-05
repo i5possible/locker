@@ -26,6 +26,11 @@ public class LockerRobotManager implements Storeable {
 
     @Override
     public Bag retrieve(Ticket ticket) {
+        for (Storeable storeable : storeables) {
+            if (storeable.isValid(ticket)) {
+                return storeable.retrieve(ticket);
+            }
+        }
         return null;
     }
 

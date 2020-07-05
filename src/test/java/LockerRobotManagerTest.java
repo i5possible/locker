@@ -55,4 +55,13 @@ public class LockerRobotManagerTest {
         locker.save(new Bag(Size.S));
         lockerRobotManager.save(new Bag(Size.S));
     }
+
+    @Test
+    public void should_return_bag_when_retrieve_bag_given_valid_ticket() {
+        Bag bag = new Bag(Size.L);
+        Ticket ticket = lockerRobotManager.save(bag);
+
+        Bag returnedBag = lockerRobotManager.retrieve(ticket);
+        assertEquals(bag, returnedBag);
+    }
 }
